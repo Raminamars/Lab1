@@ -6,10 +6,9 @@
 class Window : public QWidget // обьявление класса, наследуемого от класса QWidget
 {
 protected:
-QTextCodec *codec; // указатель на codec
 Area * area; // область отображения рисунка
-QPushButton * btn;
+QPushButton * btn;//указатель на обьект класса QPushButton
 public:
-Window();// конструктор класса Win
+Window();// конструктор класса Window
 };
-#endif
+#endif//завершение условной компиляции для предотвращения многократного включения зоголовочного файла

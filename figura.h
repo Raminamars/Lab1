@@ -6,8 +6,7 @@
 class Figura //базовый абстрактный класс фигуры
 {
 protected:
-    int x,y,halflen,dx,dy;//r убрала она вроде бы ни на что не влияет
-    //член данные x,y - центр. halflen- размер фигуры. dx,dy-поварот
+    int x,y,halflen,dx,dy;//член данные x,y - центр. halflen- размер фигуры. dx,dy-поварот
     virtual void draw(QPainter *Painter)=0; //виртуальная функция draw
 public:
     Figura(int X,int Y,int Halflen)://конструктор
