@@ -9,8 +9,8 @@
 class Win:public QWidget // класс окна
 {
     Q_OBJECT // макрос Qt, обеспечивающий корректное создание сигналов и слотов
+
 protected:
-    QTextCodec *codec;
     QFrame *frame; // рамка
     QLabel *inputLabel; // метка ввода
     QLineEdit *inputEdit; // строчный редактор ввода
@@ -27,10 +27,17 @@ public slots:
 class StrValidator:public QValidator // класс компонента проверки ввода
 {
 public:
-    StrValidator(QObject *parent):QValidator(parent){}
-    virtual State validate(QString &str,int &pos)const
+    StrValidator(QObject *parent):QValidator(parent){} //конструктор с конструктором родителя
+    virtual State validate(QString &str,int &pos)const //возвращает она State - состояние; QString &str - это наша строка, которую мы проверяем
     {
         return Acceptable; // метод всегда принимает вводимую строку
     }
+    //Поскольку в качестве сигнала завершения ввода мы собираемся использовать returnPressed()– сигнал нажатия клавиши Enter, кроме класса окна нам понадобится
+    //описать специальный класс валидатора StrValidator, наследуемый от класса QValidator.
+    //Объект этого класса, включающего метод проверки вводимой строки validate(), передается строчному редактору, осуществляющему ввод.
+    //При завершении ввода этот метод вызывается автоматически. Если этот метод возвращает Acceptable, то редактор
+    //ввода генерирует сигналы editingFinished()– завершение редактирования и
+    //returnPressed()– сигнал нажатия клавиши Enter. В противном случае эти сигналы не генерируются.
+    //Описываемый нами метод всегда принимает вводимую строку. Проверка же вводимой строки будет осуществляться позднее
 };
 #endif // WIN_H
