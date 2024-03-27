@@ -10,28 +10,28 @@
 
 class Counter:public QLineEdit
 {
-    Q_OBJECT //можем использовать слоты и сигналы
+    Q_OBJECT //макрос для использования слотов и сигналов
 public:
     Counter(const QString & contents, QWidget *parent=0):
-        QLineEdit(contents,parent){}
+        QLineEdit(contents,parent){}//конструктор
 signals:
-    void tick_signal();
-public slots:// обьявляем слот
-    void add_one() // функция с результатом не конструктор
+    void tick_signal(); //новый сигнал, каждый раз при изменении
+public slots:
+    // обьявляем слот
+    void add_one() // функция с результатом
     {
-        QString str=text();
-        int r=str.toInt();
-        if (r!=0 && r%5 ==0) emit tick_signal();
+        QString str=text();// записываем текст в текстовое поле
+        int r=str.toInt();// переводим в int
+        if (r!=0 && r%5 ==0) emit tick_signal(); //если значение кратно 5 вызвать tick_signal
         r++;
         str.setNum(r);
-        setText(str);
+        setText(str); //устанавливаем новый текст в поле
     }
 };
 class Win: public QWidget
 {
     Q_OBJECT
 protected:
-    QTextCodec *codec;
     QLabel *label1,*label2;
     Counter *edit1,*edit2;
     QPushButton *calcButton;

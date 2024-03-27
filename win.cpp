@@ -4,13 +4,15 @@
 
 Win::Win(QWidget *parent):QWidget(parent)// реализуем конструктор
 {
-this->setWindowTitle("Счетчик");
-label1 = new QLabel("Cчет по 1",this);
+this->setWindowTitle("Счетчик"); //название у окна
+label1 = new QLabel("Cчет по 1",this);// надпись в куче (и указываю им родителя для контролирования времени жизни окна)
 label2 = new QLabel("Cчет по 5",this);
 edit1 = new Counter("0",this);
 edit2 = new Counter("0",this);
 calcButton=new QPushButton("+1",this);
 exitButton=new QPushButton("Выход",this);
+
+//содаем блоки(коробки) для отрисовки
 QHBoxLayout *layout1 = new QHBoxLayout();
 layout1->addWidget(label1);
 layout1->addWidget(label2);
@@ -24,6 +26,7 @@ QVBoxLayout *layout4 = new QVBoxLayout(this);
 layout4->addLayout(layout1);
 layout4->addLayout(layout2);
 layout4->addLayout(layout3);
+
 // связь сигнала нажатия кнопки и слота закрытия окна
 connect(calcButton,&QPushButton::clicked, edit1,&Counter::add_one);
 connect(edit1,&Counter::tick_signal,edit2,&Counter::add_one);
